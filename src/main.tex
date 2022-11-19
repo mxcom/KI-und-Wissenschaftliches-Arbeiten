@@ -22,9 +22,10 @@
 
 % for hyperlinks
 \usepackage{hyperref}
-%
-% for lorem ipsum/dummy text
-\usepackage{lipsum}
+
+% Bibliography/Citations
+\usepackage{cite}
+\usepackage{natbib}
 
 %=== Document Setup ===%
 
@@ -32,9 +33,6 @@
 % use 2cm at the top if no header is used
 % use 2.5cm at the bottom if fotter is used
 \usepackage[left=3cm, right=2cm, top=2.5cm, bottom=2cm]{geometry}
-
-% sets automatic indent off
-% \setlength\parindent{0pt}
 
 % headline
 \usepackage{fancyhdr}
@@ -87,6 +85,12 @@
 \tableofcontents
 
 \include{sections/introduction.tex}
+
+\newpage
+
+\bibliographystyle{chicago}
+\nocite{*}
+\bibliography{references}
 
 \end{document}
 
