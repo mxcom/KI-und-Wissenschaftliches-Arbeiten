@@ -35,6 +35,11 @@
 
 \usepackage{ifthen}
 
+% Glossary
+\usepackage[acronym, toc]{glossaries}
+\makenoidxglossaries
+\input{glossary.tex}
+
 %=== Document Setup ===%
 
 % set margin
@@ -100,6 +105,11 @@
 
 \newpage
 
+\printnoidxglossaries
+
+\newpage
+
+\addcontentsline{toc}{section}{References}
 \bibliographystyle{chicago}
 \nocite{*}
 \bibliography{references}
