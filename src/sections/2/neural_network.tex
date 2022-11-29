@@ -1,0 +1,21 @@
+\section{Chess Commentator powered by a Neural Network}
+
+\subsection{General Approach}
+
+% In the implementation, it plays an important role what kind and how much information the neural network receives about the analysis of the individual moves in order to generate the most accurate translations possible. This is influenced by the placement of the chess engine, which can be placed either internally or externally. Internal means that the engine works as part of the neural network, which also includes the chess commentator. When placed externally, the neural net is only used for the translations of the chess commentator and uses the analysis of an outside placed engine. In the following, we will only focus on the internal placement, as this achieved the best results. For this reason I, follow the similar model, as described by ...
+
+As described in the next section, each chess engine must meet certain requirements. Based on the requirements, context is generated. Context is a set of properties that apply to the current position on the chess board. These properties are used by the generation models to make comprehensive statements about the moves.
+
+% Wie im nächsten Abschnitt beschrieben, muss jede Schachengine bestimmte Anforderungen erfüllen. Basierend auf den Anforderungen wird Kontext generiert. Bei Kontext handelt es sich um Eigenschaften welche auf die Aktuelle Position auf dem Schachbrett zutreffen. Diese Eigenschaften werden von den Generierungsmodellen verwendet, um umfassende Aussagen über die Züge zu machen.
+
+\subsection{Chess Engine}
+
+Any chess engine must meet a number of requirements in order to function. These requirements include the \textit{representation of the chessboard}, the \textit{prediction of the possible moves} and the \textit{evaluation of the possible moves}. These requirements can be implemented in a number of ways. Certain implementation options have become widely accepted. In the following, one implementation procedure is presented for each requirement. These are state of the art implementations that have been in use for many years or have achieved great success in the recent past. 
+
+\input{sections/2/representation.tex}
+
+\input{sections/2/prediction.tex}
+
+% \subsubsection{State Evaluation}
+
+% \subsection{Chess Commentator}
