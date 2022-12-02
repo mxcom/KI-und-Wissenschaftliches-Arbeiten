@@ -7,6 +7,10 @@
 % \usepackage[utf8]{inputenc}
 % \usepackage[T1]{fontenc}
 
+% decrease caption size
+\usepackage{caption}
+\captionsetup{font=footnotesize}
+
 % chess board
 \usepackage{xskak}
 
@@ -59,7 +63,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{Page \thepage}
-\lhead{Creating Chess Commentary using Machine Learning}
+\lhead{Generating Chess Commentary using Machine Learning}
 % \cfoot{}
 
 % for inline code blocks
@@ -102,9 +106,9 @@
 
 \newpage
 
-\input{sections/1/introduction.tex}
+\input{sections/introduction/introduction.tex}
 
-\input{sections/2/approach.tex}
+\input{sections/approach/approach.tex}
 
 \newpage
 
