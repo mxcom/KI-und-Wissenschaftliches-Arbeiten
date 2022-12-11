@@ -1,4 +1,4 @@
-\subsubsection{Requirements}
+\subsubsection{Categories}
 
 For a given chess position and a played move, the commentator should create comments on different categories. Those categories are the \textit{description of the current move}, the \textit{description of the move quality}, the \textit{comparison of moves}, the \textit{description of the move planning} and \textit{contextual game information}.\footnote{Cf. Jhamtani et al. 2018 p. 3}$^{,}$\footnote{Cf. Zang et al. 2019, pp. 3-4}
 
@@ -7,8 +7,6 @@ For a given chess position and a played move, the commentator should create comm
 \includegraphics[width=0.7\textwidth]{graphics/commentator_example/commentator.png}
 \caption{Chess Commentary Example (Note: Figure based on \cite{zang-etal-2019-automated} Figure 1)}
 \end{figure}
-
-These requirements can be divided according to the number of moves and positions considered for the generation. There are categories that require only one position and the played move (description and quality), and cateogries that require multiple positions and moves (comparison, planning and context) so that the description is accurate.
 
 Since the procedure for creating comments varies from category to category, it is practically impossible to do this with a single commentator, as simplified described above. Therefore, in the following it will be spoken of five individual ones, each for one of the categories. In addition, instead of categories, it is now spoken of generation models, since these are used to generate comments.
 

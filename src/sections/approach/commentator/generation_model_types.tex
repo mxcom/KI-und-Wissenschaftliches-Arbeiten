@@ -1,0 +1,9 @@
+\subsubsection{Generation Model Types and Feature Emedding}
+
+The generation models can be divided according to the number of moves and positions they consider for the generation. There are models that require only one position and the played move (description and quality), and models that require "multiple moves derived from variations and predictions"\footnote{Zang et al. 2019, pp. 5}. (comparison, planning and context) so that the description is accurate. To implement this, \cite{zang-etal-2019-automated} introduce two types of encoders, a \textit{single-move encoder} and a \textit{multi-move encoder}. The encoders are used to extract and encode certain features from given moves and positions and put them into a format that can it can used by the models for commentary generation.
+
+The single move encoder receives two inputs, a position and the move played, and outputs two encoded vectors. The encoded vectors contain features that are later used as inputs for the neural network. The position received is converted into a representation that can be processed as an input. To generate this representation, the encoder uses the engine, since it has already created an interpretable representation in the form of the BitBoard representation. The move received is examined for various features, which are then encoded in the output vector. Those features are \textit{state of the board before the move}, \textit{start square of the move}, \textit{end square of the move}, \textit{piece on the start square}, \textit{piece on the end square}, \textit{promotion state} and  \textit{checking state}. The pieces on the starting square and on the ending square can be different, since the pawns can be replaced by another piece when they reach the opponent's last rank.\footnote{See \cite{fide-2018-loc} p. 6} In this case the promotion state would be set to true.
+
+$$
+sme(p,m) \rightarrow E_p, E_m
+$$
