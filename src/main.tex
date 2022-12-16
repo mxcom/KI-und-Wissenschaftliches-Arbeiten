@@ -1,4 +1,5 @@
 \documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
 
 %=== Packages ===%
 
@@ -46,6 +47,8 @@
 \usepackage[acronym, toc]{glossaries}
 \makenoidxglossaries
 \input{glossary.tex}
+
+\usepackage{acronym}
 
 %=== Document Setup ===%
 
@@ -98,7 +101,9 @@
 
 \include{sections/titlepage.tex}
 
-\include{sections/declaration_of_authorship.tex}
+\newpage
+
+\include{sections/abstract.tex}
 
 \restoregeometry
 
@@ -110,16 +115,21 @@
 
 \input{sections/approach/files.tex}
 
+\input{sections/conclusion/conclusion.tex}
+
 \newpage
 
 \printnoidxglossaries
 
 \newpage
-
 \addcontentsline{toc}{section}{References}
 \bibliographystyle{chicago}
 \nocite{*}
 \bibliography{references}
+
+\newpage
+
+\include{sections/declaration_of_authorship.tex}
 
 \end{document}
 
