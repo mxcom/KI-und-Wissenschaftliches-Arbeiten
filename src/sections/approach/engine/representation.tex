@@ -4,8 +4,8 @@ Since the computer cannot work with a physical chess board and pieces, these mus
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.13]{graphics/bitboard/bitboard_and_chessboard.png}
+\includegraphics[width=0.5\textwidth]{graphics/bitboard/bitboard_and_chessboard.png}
 \caption{Representation of bitboard with white pawns (left) and the corresponding chessboard (right)}
 \end{figure}
 
-Bitboards can also be used to represent possible movements of chess pieces. This is achieved by performing certain logical operations on the bitboard. An advantage of the logical operations is, that be done quite fast by the processor.\footnote{Cf. \cite{boskovic-2005-bb}, p. 360} Furthermore, with x64 processors the position can be stored in one piece in the memory, as a bit string, since this is exactly 64 bits long due to the number of squares.\footnote{Cf. \cite{segundo-2005-bb}, p. 67} Another advantage is that due to its simple representation, it can be used as input for the input layer in the neural network. The network could then be trained to evaluate specific chess positions and predict moves.
+Bitboards can also be used to represent possible movements of chess pieces. This is achieved by performing certain logical operations on the bitboard. The main advantage of the logical operations are, that they can be executed quite quickly by the processor.\footnote{Cf. \cite{boskovic-2005-bb}, p. 360} Furthermore, with x64 processors the position can be stored in a bit string in the memory, since this is exactly 64 bits long due to the number of squares.\footnote{Cf. \cite{segundo-2005-bb}, p. 67} Another advantage is that it can be used as input for the input layer in the neural network due to its simple representation. The network could then be trained to evaluate specific chess positions and predict moves.
