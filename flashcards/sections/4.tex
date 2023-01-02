@@ -1,0 +1,55 @@
+\section{Schachkommentator}
+
+Jetzt werden ich den Teil besprechen, der für die Erzeugung von Kommentaren verantwortlich ist.
+
+\subsection{Encoder-Decoder Modell}
+
+Die Erzeugung von Kommentaren fällt in den Bereich der Sequenz-zu-Sequenz-Verarbeitung, was bedeutet, dass ein Input (hier entsprechende Informationen) auf einem Output (d.h. menschliche Sprachen) dargestellt wird. Länge von Input und Output können sich dabei unterscheiden.\\
+
+Eine Architektur die dies ermöglicht ist das Encoder-Decoder Modell.\\
+
+Das Modell basiert auf einer speziellen neuronalen Netzwerkarchitektur, der so genannten bidirektionalen Long-Short Term Memory-Architektur. Bevor ich das Encoder-Decoder Modell erkläre, gehe ich kurz auf diese Architektur ein.
+
+\newpage
+
+LSTMs sind eine Erweiterung von Rekurrenten Neuronalen Netzwerken\\
+
+RNNs sind neuronale Netze, die zur Verarbeitung von Sequenzen geschaffen wurden. Dabei werden die generierten Outputs wieder mit neuem Input in das Netzwerk geben. Der Zustand des Netzes repräsentiert die Neuronen also zu einen bestimmten Zeitpunkt. Durch das zurückführen des Outputs kann sich das Netzwerk an laufende Muster erinnern und entsprechend darauf reagieren.\\
+
+Bidirektionale RNNs sind eine Erweiterung der RNNs. Eingaben werden nicht nur in positiver Zeitrichtung, sondern auch in negativer Zeitrichtung berücksichtigt. D.h. es werden sowohl die vorherigen als auch die nachfolgenden Eingabedaten einbezogen.\\
+
+Ein Problem, das bei RNNs auftritt, ist, dass sie sich zwar länger laufende Muster merken können, dieses Gedächtnis aber Probleme mit langen Sequenzen hat. Dieses Problem wird als das Problem des verschwindenden Gradienten bezeichnet. LSTMs sind spezielle Neuronen, die dieses Problem lösen. Sie verfügen über ein Kurzzeitgedächtnis und ein Langzeitgedächtnis, so dass die Muster auch bei langen Sequenzen genau gespeichert werden.\\
+
+Bidirektionale LSTMs sind also bidirektionale RNNs, die die Long-Short Term Memory Neuronen verwenden.
+
+\newpage
+
+Das Encoder-Decoder Modell besteht aus zwei Teilen dem Encoder, Decoder. Bei beiden handelt es sich um Bidirektionale LSTMs.\\
+
+Der Encoder empfängt als Input die Informationen von der Schach-Engine und wandelt sie in eine andere Darstellung um. Diese Darstellung ist eine Zusammenfassung der Informationen. Die Zusammenfassung wurde mit Hilfe eines Aufmerksamkeitsmechanismus erstellt.\\
+
+Der Decoder verwendet dann diese Darstellung und erstellt entsprechende Kommentare.
+
+\newpage
+
+Hier habe ich eine Abbildung so eines Encoder-Decoder Modells mitgebracht.\\
+
+Eine dieser Blöcke stellt das Netzwerk zu einem bestimmten Zeitpunkt dar, von links nach rechts werden zeitlich aufsteigend die entsprechenden Sequenz eingegeben.\\
+
+Die Hidden Layers verarbeiten die Sequenz und durch einen Aufmerksamkeitsmechanismus werden bestimmte Teile der Eingabe zusammengefasst und zu einem Endzustand kombiniert. Dieser Zustand wird auch als Kontextvektor bezeichnet.\\
+
+Der Kontextvektor wird dann zur Initialisierung der Neuronen des Decoders verwendet. Um Kommentare zu erzeugen, wird ein Startzeichen als Eingabe eingegeben, und die Ausgabe stellt den erzeugten Kommentar dar. Die Ausgabe wird als neue Eingabe in den Decoder gegeben. Dies geschieht so lange, bis ein Endzeichen erreicht wird, das das Ende des Kommentars signalisiert.
+
+\newpage
+
+Um zu wissen zu was genau man Kommentare generieren soll, wurde 5 Kategorien festgelegt.\\
+
+Das Problem ist, dass es für Encoder-Decoder Modell nicht ausreicht. Deshalb wird für jede dieser Kategorien ein Encoder-Decoder Modell verwendet welche sich im Training unterscheiden. Die Kategorien, werden deshalb auch Generationsmodelle genannt.\\
+
+Das Training der Generationsmodelle unterscheiden sich in der Merkmalen die diese zum Trainieren bekommen sowie die Anzahl der Züge.
+
+Encoder die mehrere Züge bekommen werden dabei als Multi-Move-Encoder bezeichnet, Encoder die nur einen Zug bekommen als Single-Move-Encoder.\\
+
+Welche Merkmale die Modelle erhalten, lässt sich als Funktion zusammenfassen. Ein Zug wird dabei mit $m$ für move abgekürzt und eine Position mit $b$ für board.\\
+
+Nun da man weiß was für Merkmale man zum trainieren brauch, wurden Datensätze zum Trainieren, erstellt, welche basierend auf Kommentaren aus den fünf Kategorien aus einem Schachforum stammen.
