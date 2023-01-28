@@ -1,58 +1,74 @@
 \section{Schach Engine}
 
-Wie bereits erwähnt, sind Engines Programme zum Schachspielen. Damit diese funktionieren, müssen sie eine Reihe von Anforderungen erfüllen. Diese sind die 
+\begin{itemize}[leftmargin=*]
+\item Engines sind Schachprogramme
+\item Müssen Reihe von Anforderungen erfüllen
 \begin{itemize}
 \item Brett Darstellung
 \item Zugsuche
 \item Positionsbewertung
 \end{itemize}
-Der Vorteil von Schachengines ist, dass diese Anforderungen genau die Informationen bereitstellen, die später benötigt werden.
+\item Anforderungen stellen Informationen bereit die später benötigt werden
+\end{itemize}
 
 \newpage
 
 \subsection{Brett Darstellung}
 
-Für den Computer muss das Schachbrett und die Figuren in eine verarbeitbare Form gebracht werden.\\
-
-Eine Standardimplementierung sind sogenannte Bitboards.\\
-
-Jedes Feld kann entweder den Wert 0 oder 1 haben, wobei 0 bedeutet, dass sich keine Figur auf dem Feld befindet, und 1, dass ein Feld belegt ist.\\
-
-Für jeden Figurentyp, Figurenfarbe und für die Rochade werden Bitboards erstellt. Für die Leute die nichts mit dem Begriff Rochade anfangen können, dabei handelt es sich um einen speziellen Spielzug, um den König in eine sichere Position zu bringen.\\
-
-Die Anzahl der Bitboards können sich je nach Implementierung variieren. Hier sind es insgesamt 16.
+\begin{itemize}[leftmargin=*]
+\item Für Computer muss Schachbrett und Figuren in verarbeitbare Form gebracht werden
+\item Standardimplementierung Bitboards
+\item Jedes Feld kann Wert 0 oder 1 haben
+	\begin{itemize}[leftmargin=*]
+		\item 0: Figur belegt Feld nicht
+		\item 1: Figur belegt Feld
+	\end{itemize}
+\item Für jeden Figurentyp, Figurenfarbe und für die Rochade werden Bitboards erstellt.
+\item Rochade ist spezieller Spielzug, um König in sichere Position zu bringen
+\item Anzahl Bitboards kann je nach Implementierung variieren
+\item Hier insgesamt 16
+\end{itemize}
 
 \newpage
 
-Eine mögliche Implementierung sind $8 \times 8$ Arrays. Es gibt jedoch auch andere Implementierungen, z.B. mit einem eindimensionalen Array oder als Objekte.\\
-
-Hier habe ich als Beispiel ein Bitbrett für die weißen Bauern mitgebracht. Durch das "Übereinanderlegen" der verschiedenen Bitboards können die Züge mit Hilfe logischer Operationen berechnet werden.\\
-
-Ein Vorteil dieser Darstellung ist, dass sie als Input für neuronale Netze verwendet werden kann. Ich werde Ihnen gleich zeigen, wie das aussieht.
+\begin{itemize}[leftmargin=*]
+\item Mögliche Implementierung sind $8 \times 8$ Arrays
+\item Alterantiv eindimensionalen Array oder als Objekte
+\item Beispiel: Bitboard für weiße Bauern
+\item Durch "Übereinanderlegen" der Bitboards können Züge mit Hilfe logischer Operationen berechnet werden
+\item Vorteil ist, dass Darstellung als Input für neuronale Netze verwendet werden kann
+\end{itemize}
 
 \newpage
 
 \subsection{Zugsuche und Positionsbewertung}
 
-Schach ist bisher ein ungelöstes Spiel, d.h. es ist nicht bekannt, ob es eine Methode gibt, die immer zum Sieg oder, wenn sie von beiden Seiten angewendet wird, zum Unentschieden führt.\\
-
-Deshalb basiert die Qualität der Suche nach Zügen und der Bewertung immer auf der Programmierung der Engine und Rechenleistung des Systems.
-
-Bekannte Implementierungen, die keine Methoden des maschinellen Lernens enthalten, sind der MiniMax-Algorithmus bzw. die Erweiterung Alpha-Beta Pruning für die Zugsuche und eine handge-
-schriebene Bewertungsfunktion.\\
-
-Die Implementierung, die ich euch zeigen werde, basiert auf maschinellem Lernen. Sie verwendet einen Monte-Carlo-Suchbaum für die Zugsuche und ein neuronales Netz für die Positionsbewertung.\\
-
-Der Ansatz basiert auf der AlphaZero-Engine, die zum ersten Mal in der Lage war, die stärksten bekannten Engines zu schlagen, die ohne maschinelles Lernen arbeiten.
+\begin{itemize}[leftmargin=*]
+\item Schach ist bisher ungelöstes Spiel
+\item Nicht bekannt, ob es Methode gibt, die immer zum Sieg oder, wenn sie von beiden Seiten angewendet wird, zum Unentschieden führt
+\item Qualität Zugsuche und Positionsbewertung immer Basis der Programmierung und Rechenleistung des Systems
+\item Bekannte Implementierungen, ohne maschinelles Lernen:
+\begin{itemize}[leftmargin=*]
+\item MiniMax-Algorithmus bzw. Erweiterung Alpha-Beta Pruning für Zugsuche
+\item handgeschriebene Bewertungsfunktion
+\end{itemize}
+\item Zeigen Methode basierend auf maschinellem Lernen
+\begin{itemize}[leftmargin=*]
+\item Monte-Carlo-Suchbaum für Zugsuche
+\item Neuronales Netz für Positionsbewertung
+\end{itemize}
+\item Ansatz basiert auf AlphaZero-Engine
+\item War in der Lage, stärksten bekannten Engines zu schlagen, die ohne maschinelles Lernen arbeiten
+\end{itemize}
 
 \newpage
 
 Wie genau der Ansatz funktioniert erkläre ich an einer Abbildung.
 
 \begin{enumerate}[leftmargin=*]
-\item Wir haben eine Positon, diese liegt ich erzählt habe in der BitBoard Darstellung vor.
-\item Die Codeierte Position wird als Input für ein neuronales Netzwerk verwendet, welche die Position bewertet. Als Output gibt dieser eine Bewertung (hier $v$) aus und Wahrscheinlichkeiten für folgende Züge (hier $p_1$ bis $p_3$ für drei Züge).
-\item Der Monte Carlo Suchbaum, generiert dann alle möglichen legalen Züge.
+\item Haben Positon gegeben, die in BitBoard Darstellung vorliegt
+\item Codeierte Position wird als Input für neuronales Netzwerk verwendet, welche die Position bewertet. Als Output gibt es Bewertung (hier $v$) und Wahrscheinlichkeiten für folgende Züge (hier $p_1$ bis $p_3$ für drei Züge) aus.
+\item Monte Carlo Suchbaum, generiert alle möglichen legalen Züge
 \item Der ursprüngliche Position wird dann die Bewertung $v$ zugeordnet und die berechneten Zügen bekommen die Zugwahrscheinlichkeiten $p$. Der Suchbaum wählt dann Pfade, teils zufällig, aus, simuliert Partien und bewerte all diese Positionen und Züge mit Hilfe des Neuronalen Netzwerks.
 \item Für alle Pfade werden Gesamtstatistiken erstellt und der Pfad mit der besten Gesamtstatistik wird gespielt.
 \end{enumerate}
@@ -78,4 +94,9 @@ Durch diese Trainingsmethode konnte die damals beste Engine \textit{Stockfish}, 
 
 Aber welche Informationen haben wir nun von der Engine bekommen.
 
-Zum einen haben wir eine verarbeitbare Brettdarstellung. Außerdem können wir erkennen, ob eine Stellung gut oder schlecht ist, und wissen anhand der Zugwahrscheinlichkeiten, was gute und schlechte Züge sind. Darüber hinaus können wir Zugpfade nehmen, um die Absicht hinter einer Strategie in einer Partie zu bestimmen oder Züge zu vergleichen.
+\begin{enumerate}[leftmargin=*]
+\item Zum einen verarbeitbare Brettdarstellung
+\item Bewertung ob Stellung gut oder schlecht ist
+\item Zugwahrscheinlichkeiten
+\item Zugpfade durch MCTS um Absicht hinter Strategie zu bestimmen oder Züge zu vergleichen
+\end{enumerate}
