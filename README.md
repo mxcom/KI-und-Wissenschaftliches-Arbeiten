@@ -55,7 +55,7 @@ The `flashcards` directory contains the following files and directories related 
 
 ## Usage
 
-To view the compiled academic paper, presentation, or flashcards, simply open the corresponding PDF file (`main.pdf`).
+To view the compiled academic paper, presentation, or flashcards, simply open the corresponding PDF file located in the `paper/`, `presentation/`, or `flashcards/` directory. Alternatively, you can download the PDF files from the [Releases](https://github.com/mxcom/KI-und-Wissenschaftliches-Arbeiten/releases) page.
 
 For the presentation, the NXYZBeamerTheme was used with slight modifications. The theme can be found [here](https://github.com/NicklasXYZ/NXYZBeamerTheme).
 
