@@ -1,4 +1,4 @@
-# KI-und-Wissenschaftliches-Arbeiten
+# KI und Wissenschaftliches Arbeiten
 
 This repository contains a paper written in LaTeX for the module "KI-und-Wissenschaftliches-Arbeiten", as well as the corresponding presentation and flashcards.
 
